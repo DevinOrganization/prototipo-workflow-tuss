@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WorkFlow TUSS/THSM — Protótipo v3 (Alteração e Exclusão)</title>
+<link rel="stylesheet" href="styles.css?v=11">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-left">
+    <div class="brand">
+      <span class="brand-mark"></span>
+      <span class="brand-text">WorkFlow <strong>TUSS/THSM</strong><span class="ver-tag">v3 · Alteração e Exclusão</span></span>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <div class="role-current" id="roleCurrent"></div>
+    <button class="btn-switch" id="btnSwitch" onclick="go('#/perfil')">Trocar perfil</button>
+    <div class="user-chip" id="userChip">AR</div>
+  </div>
+</header>
+
+<div class="shell">
+  <nav class="sidenav" id="sidenav"></nav>
+  <main class="content" id="view"></main>
+</div>
+
+<div class="modal-backdrop" id="modalBackdrop" hidden>
+  <div class="modal" id="modal"></div>
+</div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script src="data.js?v=11"></script>
+<script src="novos.js?v=11"></script>
+<script src="app.js?v=11"></script>
+</body>
+</html>
