@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WorkFlow TUSS/THSM — Comparar Versão 5 × Versão 6</title>
+<style>
+html,body{margin:0;height:100%;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#f5f6f8}
+.bar{display:flex;align-items:center;gap:12px;height:44px;padding:0 14px;background:#1f2937;color:#fff;font-size:13px}
+.bar a{color:#fff}
+.bar .sp{flex:1}
+.bar button{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.5);border-radius:6px;padding:4px 10px;cursor:pointer;font-size:12px}
+.wrap{display:flex;height:calc(100% - 44px)}
+.wrap.stack{flex-direction:column}
+.pane{flex:1;display:flex;flex-direction:column;min-width:0;min-height:0;border-right:2px solid #1f2937}
+.pane:last-child{border-right:0}
+.wrap.stack .pane{border-right:0;border-bottom:2px solid #1f2937}
+.ph{display:flex;justify-content:space-between;align-items:center;padding:6px 12px;font-size:12px;font-weight:600;background:#e5e7eb}
+.ph.v6{background:#FDECEC;color:#C00000}
+.ph a{font-weight:400;color:inherit}
+iframe{flex:1;border:0;width:100%;background:#fff}
+</style>
+</head>
+<body>
+<div class="bar"><strong>Comparar Versão 5 × Versão 6</strong><span>Navegue em cada lado de forma independente.</span><span class="sp"></span>
+<button onclick="document.querySelector('.wrap').classList.toggle('stack')">Alternar lado a lado / empilhado</button>
+<a href="./">Voltar às versões</a></div>
+<div class="wrap">
+<div class="pane"><div class="ph"><span>Versão 5 · especificação anterior</span><a href="v5/" target="_blank">abrir em nova aba ↗</a></div><iframe src="v5/" title="Versão 5"></iframe></div>
+<div class="pane"><div class="ph v6"><span>Versão 6 · especificação v0.6 (pendências em vermelho)</span><a href="v6/" target="_blank">abrir em nova aba ↗</a></div><iframe src="v6/" title="Versão 6"></iframe></div>
+</div>
+</body>
+</html>

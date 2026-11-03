@@ -5,24 +5,55 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>WorkFlow TUSS/THSM — Protótipos</title>
 <style>
-body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#f5f6f8;color:#1f2937;margin:0;padding:48px 16px}
-main{max-width:640px;margin:0 auto}
-h1{font-size:22px;margin:0 0 24px}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#f5f6f8;color:#1f2937;margin:0;padding:40px 16px}
+main{max-width:860px;margin:0 auto}
+h1{font-size:22px;margin:0 0 6px}
+h2{font-size:15px;margin:28px 0 10px;color:#374151;text-transform:uppercase;letter-spacing:.04em}
+p.sub{color:#6b7280;font-size:13px;margin:0 0 18px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 a.card{display:block;background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:16px 20px;margin-bottom:12px;text-decoration:none;color:inherit}
 a.card:hover{border-color:#cc092f}
 a.card strong{display:block;font-size:16px;margin-bottom:4px}
 a.card span{font-size:13px;color:#6b7280}
+a.cmp{display:block;text-align:center;background:#cc092f;color:#fff;border-radius:10px;padding:14px;text-decoration:none;font-weight:600;margin-bottom:12px}
+a.cmp:hover{background:#a8071f}
 .tag{background:#cc092f;color:#fff;border-radius:4px;font-size:11px;padding:2px 6px;margin-left:6px;vertical-align:middle}
+.box{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:14px 20px;font-size:13px;line-height:1.6}
+.box ul{margin:6px 0 0;padding-left:18px}
+.red{color:#C00000;font-weight:600}
+.old a.card{padding:10px 16px}
 </style>
 </head>
 <body>
 <main>
 <h1>WorkFlow TUSS/THSM — Protótipos</h1>
-<a class="card" href="v5-onda2-esp06/"><strong>v5 — Onda 2 · Especificação v0.6 <span class="tag">atual</span></strong><span>Ajustes de especialidade (v0.6, 03/11) com pendências de definição em vermelho</span></a>
-<a class="card" href="v4-onda2/"><strong>v4 — Onda 2</strong><span>Especialidade × procedimento e carga de arquivo .xlsx</span></a>
-<a class="card" href="v3/"><strong>v3</strong><span>Versão anterior</span></a>
+<p class="sub">Onda 2 · especialidade × procedimento. Cada versão do protótipo corresponde a uma versão da especificação.</p>
+
+<h2>Onda 2 · comparação para refinamento</h2>
+<div class="row">
+<a class="card" href="v5/"><strong>Versão 5</strong><span>Especificação Onda 2 anterior à v0.6 · especialidade × procedimento e carga de arquivo .xlsx</span></a>
+<a class="card" href="v6/"><strong>Versão 6 <span class="tag">atual</span></strong><span>Especificação Onda 2 v0.6 (03/11/26) · pendências de definição destacadas em vermelho</span></a>
+</div>
+<a class="cmp" href="comparar.html">Comparar Versão 5 × Versão 6 lado a lado</a>
+
+<div class="box"><strong>O que muda da Versão 5 para a Versão 6 (especificação v0.6)</strong>
+<ul>
+<li><strong>Pendências de definição:</strong> <span class="red">mensagens em vermelho</span> em cada tela onde a v0.6 registra ponto a esclarecer (HU-x PAyy). Na página inicial da Versão 6 há um painel com todas as pendências.</li>
+<li><strong>HU-A (análise de inclusão):</strong> mesmo fluxo; pendências PA01 a PA04 sinalizadas.</li>
+<li><strong>HU-B (solicitação de alteração):</strong> abas sem contador (indicador visual a definir); desassociação com “✕” no lugar da marcação “manter”.</li>
+<li><strong>HU-C (análise de alteração):</strong> reprovar especialidade exige justificativa; especialidade incluída/desassociada na análise exige justificativa na linha; conclusão bloqueada sem justificativa.</li>
+<li><strong>HU-D (histórico):</strong> especialidade com “De” vazio, código, descrição e tipo de ação.</li>
+<li><strong>HU-F (consulta):</strong> novo filtro “Especialidade” S/N (a confirmar); filtro por atributo só para Alteração, critério OU.</li>
+<li><strong>HU-G (exportação):</strong> ao final, coluna “Especialidade” S/N e coluna única de atributos alterados separados por “;”; sem a lista de especialidades.</li>
+</ul></div>
+
+<h2>Versões anteriores</h2>
+<div class="old">
+<a class="card" href="v3/"><strong>v3</strong><span>Alteração de atributos e exclusão de código</span></a>
 <a class="card" href="v2/"><strong>v2</strong><span>Versão anterior</span></a>
 <a class="card" href="v1/"><strong>v1</strong><span>Versão original</span></a>
+</div>
+<p class="sub" style="margin-top:12px">O link enviado antes como “v4-onda2” continua funcionando e tem o mesmo conteúdo da Versão 5.</p>
 </main>
 </body>
 </html>

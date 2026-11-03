@@ -1,5 +1,5 @@
 /* =========================================================
-   v5: ajustes da Especificação Onda 2 v0.6 (03/11/26)
+   Versão 6: ajustes da Especificação Onda 2 v0.6 (03/11/26)
    Pontos pendentes de definição destacados em vermelho
    ========================================================= */
 const pend = (ref, txt) => `<div class="pend-def"><strong>Pendente de definição · ${ref}</strong> — ${txt}</div>`;
@@ -209,7 +209,7 @@ function espHistHtml(h){
 /* ---------- HU-E / HU-F / HU-G ---------- */
 function pendConsulta(){
   return `<div class="card-body" style="padding-top:0">
-    ${pend('HU-E PA01','conteúdo da coluna “Especialidade” para solicitações de inclusão de procedimento (traço ou “S”). A v5 exibe “—” sem especialidade e “S” com especialidade.')}
+    ${pend('HU-E PA01','conteúdo da coluna “Especialidade” para solicitações de inclusão de procedimento (traço ou “S”). A Versão 6 exibe “—” sem especialidade e “S” com especialidade.')}
     ${pend('HU-E PA02','visualização em tela com muitos atributos: João sugeriu não exibir; Marcia e Renan mantêm a exibição. Confirmar o formato.')}
     ${podeExportar()?pend('HU-G PA01','resultado do teste do tamanho máximo da célula do Excel (Arthur) e tratamento caso o limite seja excedido.'):''}
   </div>`;
@@ -263,7 +263,7 @@ const PENDENCIAS_V06 = [
 function homeOnda2(){
   const L = n => `<span class="num-link" onclick="go('#/demanda?n=${n}')">${n}</span>`;
   return `<div class="card">
-    <div class="card-head"><h2>Novo nesta versão: v5 · Especificação Onda 2 v0.6 (03/11/26)</h2><span class="tag-onda">base: v4 Onda 2</span></div>
+    <div class="card-head"><h2>Versão 6 · Especificação Onda 2 v0.6 (03/11/26): mudanças em relação à Versão 5</h2><span class="tag-onda">base: Versão 5</span></div>
     <div class="card-body">
       <div class="pend-def" style="margin-top:0"><strong>Legenda:</strong> mensagens em vermelho indicam pontos com <strong>pendência de definição</strong> documentada na especificação v0.6 e precisam de refinamento complementar com a PO. O comportamento exibido nesses pontos é hipótese de trabalho.</div>
       <div class="grid-2">

@@ -360,3 +360,6 @@ tr.row-ds td{background:#FFF7F8}
 .pend-box{border:1px solid #F3B5B5;background:#FFF8F8;border-radius:6px;padding:10px 12px}
 .pend-box h3{margin:0 0 6px;font-size:13px;color:#1f2937}
 .pend-box ul{margin:0;padding-left:18px;color:#C00000;font-size:12px;line-height:1.55}
+
+.ver-cmp{margin-left:10px;font-size:11px;color:#fff;border:1px solid rgba(255,255,255,.6);border-radius:10px;padding:2px 8px;text-decoration:none;vertical-align:middle}
+.ver-cmp:hover{background:rgba(255,255,255,.15)}

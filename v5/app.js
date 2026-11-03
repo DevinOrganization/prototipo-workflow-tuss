@@ -1,6 +1,6 @@
 /* Protótipo navegável — WorkFlow TUSS/THSM */
 
-const STORE_KEY = 'wf-tuss-proto-v5-onda2-esp06-1';
+const STORE_KEY = 'wf-tuss-proto-v5-onda2-1';
 let state = load();
 
 function load(){
@@ -1010,7 +1010,7 @@ function reenviar(n){
 /* =========================================================
    EPIC 10 — consulta e extração
    ========================================================= */
-let filtros = { numero:'', tipoSol:'', codigo:'', tipoCodigo:'', status:'', solicitante:'', area:'', responsavel:'', de:'', ate:'', descricao:'', entrada:'', atributos:[], esp:'' };
+let filtros = { numero:'', tipoSol:'', codigo:'', tipoCodigo:'', status:'', solicitante:'', area:'', responsavel:'', de:'', ate:'', descricao:'', entrada:'', atributos:[] };
 
 function viewConsulta(){
   const rows = aplicarFiltros();
@@ -1060,12 +1060,12 @@ function viewConsulta(){
 
   <div class="card">
     <div class="card-head"><h2>Resultados (${rows.length})</h2>
-      <span class="muted" style="font-size:12px">Ordenação: mais recentes primeiro (RN10.4) · colunas Especialidade (S/N) e Atributos alterados ao final ${tagOnda('HU-E')} ${pendTag("HU-E PA01/PA02")}</span></div>
-    ${tabela(rows,{extracao:true})}${pendConsulta()}
+      <span class="muted" style="font-size:12px">Ordenação: mais recentes primeiro (RN10.4) · colunas Especialidade (S/N) e Atributos alterados ao final ${tagOnda('HU-E')} · inclusão sem especialidade = “—” e atributos agrupados <span class="tag-open">PA01/PA02 — hipótese</span></span></div>
+    ${tabela(rows,{extracao:true})}
   </div>`;
 }
 function setFiltro(k,v){ filtros[k]=v; if(k==='tipoSol' && v!=='alteracao') filtros.atributos=[]; render(); }
-function limparFiltros(){ filtros={numero:'',tipoSol:'',codigo:'',tipoCodigo:'',status:'',solicitante:'',area:'',responsavel:'',de:'',ate:'',descricao:'', entrada:'', atributos:[], esp:''}; render(); }
+function limparFiltros(){ filtros={numero:'',tipoSol:'',codigo:'',tipoCodigo:'',status:'',solicitante:'',area:'',responsavel:'',de:'',ate:'',descricao:'', entrada:'', atributos:[]}; render(); }
 function aplicarFiltros(){
   return visiveis().filter(d=>{
     if(filtros.numero && d.numero!==filtros.numero.trim()) return false;
@@ -1080,7 +1080,6 @@ function aplicarFiltros(){
     if(filtros.de && new Date(d.abertura) < new Date(filtros.de+'T00:00:00')) return false;
     if(filtros.ate && new Date(d.abertura) > new Date(filtros.ate+'T23:59:59')) return false;
     if(filtros.entrada && (d.origem||'Manual')!==filtros.entrada) return false;
-    if(filtros.esp && espIndicador(d)!==filtros.esp) return false;
     if(filtros.tipoSol==='alteracao' && (filtros.atributos||[]).length && !(d.atributos||[]).some(a=>filtros.atributos.includes(a.nome))) return false;
     return true;
   }).sort((a,b)=> new Date(b.abertura)-new Date(a.abertura));
