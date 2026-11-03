@@ -606,10 +606,7 @@ function viewDemandaNova(d){
       <div class="card"><div class="card-head"><h2>Ciclos de retorno</h2></div><div class="card-body">
         <p class="muted" style="margin:0;font-size:12px">Retornos: <strong>${d.historico.filter(h=>h.acao.includes('Retorno')).length}</strong> ·
         Reenvios: <strong>${d.historico.filter(h=>h.acao.includes('Reenvio')).length}</strong><br>Protocolo mantido em todos os ciclos.</p></div></div>
-      ${alt?`<div class="card"><div class="card-head"><h2>Pontos em aberto</h2></div><div class="card-body">
-        <p class="muted" style="font-size:12px;line-height:1.6;margin:0">
-        · Editar o Para de um atributo já decidido volta a situação para Pendente <span class="tag-open">hipótese</span><br>
-        · Matriz oficial de domínio, máscara e tamanho por atributo <span class="tag-open">a definir</span></p></div></div>`:''}
+      
     </div>
   </div>`;
 }

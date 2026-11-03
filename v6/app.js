@@ -218,8 +218,7 @@ function viewHome(){
         Os dados ficam apenas no navegador — use “Reiniciar dados” para voltar ao estado inicial.
       </p>
       <p class="muted" style="line-height:1.6">
-        Os pontos marcados com <span class="tag-open">decisão pendente</span> indicam regras que ainda não estão
-        fechadas no refinamento e foram representadas aqui com uma hipótese de trabalho.
+        Os alertas <span class="pend-tag">em vermelho</span> indicam pontos com pendência de definição registrada na especificação v0.6 e precisam de refinamento complementar.
       </p>
     </div>
   </div>`;
@@ -436,17 +435,6 @@ function viewForm(q){
           <p class="hint" style="margin-top:12px">Dados não editáveis pelo solicitante (RN2.13).</p>
         </div>
       </div>
-      <div class="card">
-        <div class="card-head"><h2>Pontos em aberto nesta tela</h2></div>
-        <div class="card-body">
-          <p class="muted" style="font-size:12px;line-height:1.6;margin:0">
-            · Salvamento de rascunho existe? <span class="tag-open">#2</span><br>
-            · Máscara e casas decimais do Valor <span class="tag-open">#5</span><br>
-            · Validação de Código e Código espelho no SSCF <span class="tag-open">RN3.9</span><br>
-            · Comportamento se a área do usuário não for identificada <span class="tag-open">#3</span>
-          </p>
-        </div>
-      </div>
     </div>
   </div>`;
 }
@@ -571,7 +559,7 @@ function salvarRascunho(){
   const f = coleta();
   state.draft = { ...f, valor:f.valorRaw, anexos:f.anexos };
   save();
-  toast('Rascunho salvo','Nenhum protocolo foi gerado. Comportamento sujeito à decisão pendente #2.','info');
+  toast('Rascunho salvo','Nenhum protocolo foi gerado.','info');
 }
 
 /* =========================================================

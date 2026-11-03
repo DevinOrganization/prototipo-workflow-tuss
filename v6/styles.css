@@ -363,3 +363,6 @@ tr.row-ds td{background:#FFF7F8}
 
 .ver-cmp{white-space:nowrap;margin-left:10px;font-size:11px;color:#fff;border:1px solid rgba(255,255,255,.6);border-radius:10px;padding:2px 8px;text-decoration:none;vertical-align:middle}
 .ver-cmp:hover{background:rgba(255,255,255,.15)}
+
+/* Versão 6: somente pendências da especificação v0.6 */
+.tag-open:not([style]){display:none}

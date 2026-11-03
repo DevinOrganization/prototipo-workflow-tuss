@@ -4,8 +4,8 @@
    ========================================================= */
 const pend = (ref, txt) => `<div class="pend-def"><strong>Pendente de definição · ${ref}</strong> — ${txt}</div>`;
 const pendTag = ref => `<span class="pend-tag">${ref} · a definir</span>`;
-const MSGREF = { H01:'HU-H MSG01', H02:'HU-H MSG02', DUP:'HU-A MSG02 / HU-B MSG03 / HU-C MSG02', A01:'HU-A MSG01', B01:'HU-B MSG01', C01:'HU-C MSG01' };
-const provTx = k => `Texto provisório: ${MSGREF[k]} sem texto definido na especificação`;
+const MSGREF = { H01:'HU-H M02 (pesquisa sem resultado)', H02:'HU-H M04 (indisponibilidade)', DUP:'M03 (especialidade já incluída)', A01:'HU-A M05 (conclusão sem especialidade)', B01:'HU-B M01 (finalização sem aba preenchida)', C01:'HU-C M01 (regra de conclusão da análise)' };
+const provTx = k => `Pendente de definição · ${MSGREF[k]}: mensagem necessária, porém o texto não foi informado no requisito (texto provisório)`;
 const msgHtml = k => `${MSG[k]}<span class="msg-prov">${provTx(k)}</span>`;
 
 function toast(title, body, kind){
@@ -113,7 +113,7 @@ function cardAbasAnalise(d, gt){
   const tab = (id, t, n, p) => `<div class="tab ${aba===id?'on':''}" onclick="abaAna['${d.numero}']='${id}';render()">${t} ${n?'<span class="tab-dot" title="Aba com informações"></span>':''}${p?`<span class="tab-p" title="Itens pendentes">${p} pend.</span>`:''}</div>`;
   return `<div class="card" id="card-abas">
     <div class="tabs">${tab('atr','Atributos',d.atributos.length,pend_.atr)}${tab('esp','Especialidade',e.length,pend_.esp)}<div class="tabs-fill">${tagOnda('HU-C')}</div></div>
-    <div style="padding:0 14px">${pend('HU-C PA04','indicação visual de aba com manutenção na análise não confirmada (ponto vermelho é hipótese).')}</div>
+    <div style="padding:0 14px">${pend('HU-C PA04','indicação visual de aba com manutenção na análise não confirmada (ponto vermelho é hipótese). Posição dos elementos: a esclarecer com a tela de referência.')}</div>
     ${aba==='atr'
       ? (d.atributos.length ? `<div class="tab-sub muted">${cont.a} aprovado(s) · ${cont.r} recusado(s) · ${pend_.atr} pendente(s)</div>${tabelaAtributos(d, gt?'gt':'sol')}`
                             : '<div class="card-body"><div class="sel-empty">Nenhuma alteração de atributo nesta solicitação.</div></div>')
@@ -158,7 +158,7 @@ function espAnaliseHtml(d, gt){
       ${state.role==='gestor'?pend('HU-C PA03','participação do gestor de gestão de tabelas nesta funcionalidade não definida.'):''}
     </div>
     ${pode?`<div class="esp-sec"><h3>Incluir especialidade não solicitada</h3>
-      ${pend('HU-C PA01','incluir especialidade não solicitada e selecionar todas na análise estão em validação com a equipe do Renan (C03).')}
+      ${pend('HU-C PA01','incluir especialidade não solicitada, selecionar todas e excluir especialidade durante a análise estão em validação com a equipe do Renan (C03).')}
       ${espPicker('ana','ana:'+d.numero)}
       <p class="hint" style="margin:0">Incluídas pelo analista ficam com origem “Análise”, exigem justificativa na linha e podem ser excluídas até a finalização.</p></div>`:''}
   </div>`;
@@ -220,7 +220,7 @@ function filtroAtrHtml(){
       <option value="S" ${filtros.esp==='S'?'selected':''}>S: com manutenção de especialidade</option>
       <option value="N" ${filtros.esp==='N'?'selected':''}>N: sem manutenção de especialidade</option></select>
     <div class="hint">Indicação S/N, sem filtro por especialidade específica.</div></div>
-    ${pend('HU-F PA01 / RN05','inclusão do filtro “Especialidade” S/N não confirmada (proposta do Renan, restaurada na v0.6). “Especialidade” não consta mais da lista de atributos.')}`;
+    ${pend('HU-F PA01','inclusão do filtro “Especialidade” S/N não confirmada (proposta do Renan, restaurada na v0.6). “Especialidade” não consta mais da lista de atributos.')}`;
   if(filtros.tipoSol!=='alteracao') return `${espF}<p class="hint" style="margin:10px 0 0">Filtro por atributo alterado: disponível quando o Tipo de solicitação for “Alteração de Atributos”. ${tagOnda('HU-F')}</p>`;
   const sel = filtros.atributos || (filtros.atributos = []);
   return `${espF}<div class="field" style="margin-top:12px;margin-bottom:0"><label>Atributos alterados ${tagOnda('HU-F')} <span class="muted" style="font-weight:400">: retorna as solicitações que contêm qualquer um dos atributos selecionados (critério OU), junto com o período informado</span></label>
@@ -250,14 +250,13 @@ function gerarExportacao(rows, linhas){
 
 /* ---------- Home ---------- */
 const PENDENCIAS_V06 = [
-  ['Geral', ['Épico (Jira) de todas as histórias: a preencher.', 'Recorte do escopo da SP4 somente na planning de 09/11, conforme estimativas (PG02).']],
-  ['HU-H · Tabela de especialidades', ['PA01: sistema de origem (GPRS, SSCF ou planilha), serviço, parâmetros e campos retornados.', 'PA02: existência do indicador de situação ativa/inativa.', 'MSG01 (pesquisa sem resultado) e MSG02 (indisponibilidade): texto não informado.']],
-  ['HU-A · Análise de inclusão', ['PA01: posição da seleção de especialidade no formulário.', 'PA02: obrigatoriedade de especialidade também para THSM.', 'PA03: recursos do gestor na análise de inclusão.', 'PA04: papel do “robô” na efetivação do relacionamento.', 'MSG01 e MSG02: texto não informado.']],
-  ['HU-B · Solicitação de alteração', ['PA01: validação técnica das abas e da nova regra de conclusão no Pega (João).', 'PA02: permitir desassociar todas as especialidades.', 'PA03: posição das abas e das sessões.', 'PA04: nomenclatura oficial de associação/desassociação.', 'PA05: participação do gestor.', 'PA06: indicação visual de aba com manutenção (contador não é requisito).', 'PA07: componente de desassociação (sugestão “✕”).', 'MSG01, MSG02 e MSG03: texto não informado.']],
-  ['HU-C · Análise de alteração', ['PA01: alterar a manutenção, incluir não solicitadas, desassociar e selecionar todas na análise (em validação, Renan).', 'PA02: coluna de origem (solicitação/análise).', 'PA03: participação do gestor.', 'PA04: indicação visual de aba com manutenção.', 'MSG01 e MSG02: texto não informado.']],
+  ['HU-H · Tabela de especialidades', ['PA01: sistema de origem (GPRS, SSCF ou planilha), serviço, parâmetros e campos retornados.', 'PA02: existência do indicador de situação ativa/inativa.', 'M02 (pesquisa sem resultado) e M04 (indisponibilidade): texto da mensagem não informado.']],
+  ['HU-A · Análise de inclusão', ['PA01: posição da seleção de especialidade no formulário.', 'PA02: obrigatoriedade de especialidade também para THSM.', 'PA03: recursos do gestor na análise de inclusão.', 'PA04: papel do “robô” na efetivação do relacionamento.', 'M05 (conclusão sem especialidade) e M03 (já incluída): texto não informado.']],
+  ['HU-B · Solicitação de alteração', ['PA01: validação técnica das abas e da nova regra de conclusão no Pega (João).', 'PA02: permitir desassociar todas as especialidades.', 'PA03: posição das abas e das sessões.', 'PA04: nomenclatura oficial de associação/desassociação.', 'PA05: participação do gestor.', 'PA06: indicação visual de aba com manutenção (contador não é requisito).', 'PA07: componente de desassociação (sugestão “✕”).', 'M01 (finalização sem aba preenchida), mensagem atual do formulário e M03 (já incluída): texto não informado.']],
+  ['HU-C · Análise de alteração', ['PA01: parecer por item ou para a aba; alterar a manutenção, incluir não solicitadas, desassociar, excluir e selecionar todas na análise (em validação, Renan).', 'PA02: coluna de origem (solicitação/análise).', 'PA03: participação do gestor.', 'PA04: indicação visual de aba com manutenção; posição dos elementos.', 'M01 (regra de conclusão) e M03 (já incluída): texto não informado.']],
   ['HU-D · Consulta de histórico', ['PA01: formato de exibição da especialidade e do tipo de ação.', 'PA02: distinguir manutenção do solicitante × análise.']],
   ['HU-E · Consulta extração', ['PA01: conteúdo da coluna “Especialidade” na inclusão (traço ou “S”).', 'PA02: visualização com muitos atributos.']],
-  ['HU-F · Filtro por atributo', ['PA01 / RN05: filtro “Especialidade” S/N a confirmar.']],
+  ['HU-F · Filtro por atributo', ['PA01: inclusão do filtro “Especialidade” S/N não confirmada.']],
   ['HU-G · Layout da extração', ['PA01: teste do tamanho máximo da célula do Excel e tratamento do excesso.']]
 ];
 function homeOnda2(){
